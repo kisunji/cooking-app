@@ -8,9 +8,4 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
   providers: [ShoppingListService]
 })
 export class AppComponent {
-  currentView = 'recipes';
-
-  onNavigate(view: string) {
-    this.currentView = view;
-  }
 }

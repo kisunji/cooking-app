@@ -7,7 +7,6 @@ import { Ingredient } from '../shared/ingredient.model';
   providedIn: 'root'
 })
 export class RecipeService {
-  recipeSelected = new EventEmitter<Recipe>();
 
   private recipes: Recipe[] = [
     new Recipe(
@@ -34,5 +33,9 @@ export class RecipeService {
   getRecipes(): Recipe[] {
     // slice() called to return a shallow copy of the array instead of reference to private array
     return this.recipes.slice();
+  }
+
+  getRecipe(index: number): Recipe {
+    return this.recipes[index];
   }
 }

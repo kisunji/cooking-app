@@ -1,11 +1,13 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
+import { Subject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingListService {
-  ingredientsChanged = new EventEmitter<Ingredient[]>();
+  ingredientsChanged = new Subject<Ingredient[]>();
 
   ingredients: Ingredient[] = [
     new Ingredient('Apples', 5),
@@ -30,10 +32,9 @@ export class ShoppingListService {
       this.ingredients.push(ingredient);
     } else {
       // Unary plus converts to a number (otherwise considered strings and appended)
-      this.ingredients[index].amount += +ingredient.amount ;
+      this.ingredients[index].amount += ingredient.amount;
     }
-
-    this.ingredientsChanged.emit(this.ingredients.slice());
+    this.ingredientsChanged.next(this.ingredients.slice());
   }
 
   addIngredients(ingredients: Ingredient[]) {
@@ -47,9 +48,9 @@ export class ShoppingListService {
         this.ingredients.push(ingredient);
       } else {
         // Unary plus converts to a number (otherwise considered strings and appended)
-        this.ingredients[index].amount += +ingredient.amount ;
+        this.ingredients[index].amount += ingredient.amount;
       }
     }
-    this.ingredientsChanged.emit(this.ingredients.slice());
+    this.ingredientsChanged.next(this.ingredients.slice());
   }
 }

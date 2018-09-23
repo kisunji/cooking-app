@@ -6,10 +6,5 @@ import {Component, EventEmitter, Output} from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  @Output() viewSelected = new EventEmitter<string>();
-
-  onNavigate(view: string) {
-    this.viewSelected.emit(view);
-  }
 
 }
